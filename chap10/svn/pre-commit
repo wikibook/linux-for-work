@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+
+<?php
+
+# comment 가 10자 미만이면 커밋 거부
+$minchars = 10;
+$svnlook = 'svnlook';
+
+#--------------------------------------------
+$repos = $argv[1];
+$txn = $argv[2];
+$comment = `$svnlook log -t "$txn" "$repos"`;
+
+$comment = chop($comment);
+
+if ( strlen($comment) == 0 ) {
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  fwrite(STDERR, "Your commit has been blocked because it didn't include a log message.!\n");
+  fwrite(STDERR, "Do the commit again, this time with a log message that describes your changes.!\n");
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  exit(1);
+}
+else if ( strlen($comment) < $minchars ) {
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  fwrite(STDERR, "Comment must be at least $minchars characters.\n");
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  exit(1);
+}
+
+## 커밋 메시지에 #123 처럼 redmine 레드마인 이슈 번호가 들어 있는지 확인한다.
+if (preg_match('/[^\d\n\r]#(?:[0-9]+)+.+/', $comment)) {
+	# Successful match
+} else {
+  # Match attempt failed
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  fwrite(STDERR, "Comment must match REDMINE-ISSUE-NUMBER!!! \"$comment\"\n");
+  fwrite(STDERR, "---------------------------------------------------------------------------\n");
+  exit(1);
+}
+
+exit(0);
+?>
+
