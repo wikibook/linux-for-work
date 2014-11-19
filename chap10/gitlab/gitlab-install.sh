@@ -7,8 +7,9 @@
 ## epel 저장소 추가
 sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 
 
-## ruby 2.0 내려받기
+## ruby 2.0 내려받고 설치
 curl -O -L https://github.com/lesstif/ruby-rpm/releases/download/v0.1/ruby-2.0.0p451-1.el6.x86_64.rpm
+yum localinstall ruby*
 
 ## 개발 도구 설치
 yum -y groupinstall 'Development Tools'
@@ -25,3 +26,14 @@ adduser --system --shell /sbin/nologin --comment ‘GitLab’ --create-home --ho
 usermod -s /bin/bash git 
 
 ## 3. gitlab shell 설치
+cd /home/git
+sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b v1.9.1 
+sudo -u git -H cp gitlab-shell/config.yml.example gitlab-shell/config.yml
+
+## 4. MySQL DB 와 계정 생성
+# CREATE DATABASE IF NOT EXISTS gitlabhq_production CHARACTER SET utf8 COLLATE utf8_bin;
+# GRANT ALL PRIVILEGES ON gitlabhq_production.* TO 'gitlab'@'localhost' IDENTIFIED BY 'secure_password';
+
+
+
+
