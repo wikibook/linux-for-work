@@ -18,7 +18,7 @@ sestatus
 ## SELinux 의 모든 boolean 확인
 getsebool -a
 
-## 특정 boolean 확인
+## 특정 SELinux boolean 확인
 getsebool httpd_can_sendmail 
 
 ## boolean 값 설정(재부팅후 사라짐)
@@ -69,5 +69,5 @@ grep "type=AVC" /var/log/audit/audit.log
 ## aureport 로 로그 필터링(3월 10일 이후 audit 관련 로그만 출력)
 aureport -a -ts "2014년 3월 10일" 
 
-## 프로세스를 제한없이 실행되도록 설정
+## !주의 httpd 프로세스를 제한없이 실행되도록 도메인 설정
 chcon -t unconfined_exec_t /usr/sbin/httpd
