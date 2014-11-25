@@ -48,11 +48,13 @@ yum grouplist
 
 
 ## "웹 서버" 그룹에 포함된 패키지 목록 출력
+yum groupinfo "Web Server"
+
+## 한글 패키지 그룹명도 사용 가능
 yum groupinfo "웹 서버"
 
 ## "웹 서버" 그룹 패키지 설치
 yum groupinstall "웹 서버"
-
 
 ### yum 플러그인 검색
 yum search yum plugin
