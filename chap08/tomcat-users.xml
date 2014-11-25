@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tomcat-users>
+   <role rolename="admin-gui" />
+   <role rolename="admin-script" />
+   <role rolename="manager-gui" />
+   <role rolename="manager-jmx" />
+   <role rolename="manager-script" />
+   <role rolename="manager-status" />
+   <user username="HostAdmin" password="$trongPasswd" roles="admin-gui,admin-script" />
+   <user username="ManaGer" password="$trongPasswd" roles="manager-gui,manager-script,manager-status" />
+</tomcat-users>
+

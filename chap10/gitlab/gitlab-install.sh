@@ -5,11 +5,13 @@
 #### 1. 사전 작업
 
 ## epel 저장소 추가
-sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 
+rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 
 
 ## ruby 2.0 내려받고 설치
 curl -O -L https://github.com/lesstif/ruby-rpm/releases/download/v0.1/ruby-2.0.0p451-1.el6.x86_64.rpm
 yum localinstall ruby*
+## 루비 번들러 설치
+gem install bundle
 
 ## 개발 도구 설치
 yum -y groupinstall 'Development Tools'
@@ -22,16 +24,18 @@ chkconfig redis on
 service redis restart
 
 ##  사용자 계정 생성
-adduser --system --shell /sbin/nologin --comment ‘GitLab’ --create-home --home-dir /home/git/ git
-usermod -s /bin/bash git 
+adduser --system --shell /bin/bash --comment 'GitLab' --create-home --home-dir /home/git/ git
+
+### 이제부터는 git 사용자로 작업한다.
+su - git
 
 ## 3. gitlab-shell 설치
 cd /home/git
 
 ### gitlab 의 branch 이름이 v1.9.1 에서 version-1-9 로 변경됨.
-sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b version-1-9
+git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b version-1-9
 cd gitlab-shell
-sudo -u git -H cp config.yml.example config.yml
+cp config.yml.example config.yml
 ## config.xml 편집
 vi config.yml
 
@@ -39,15 +43,14 @@ vi config.yml
 # CREATE DATABASE IF NOT EXISTS gitlabhq_production CHARACTER SET utf8 COLLATE utf8_bin;
 # GRANT ALL PRIVILEGES ON gitlabhq_production.* TO 'gitlab'@'localhost' IDENTIFIED BY 'secure_password';
 
-
 ## MySQL 계정 정상 동작 여부 확인
 mysql -u gitlab -psecure_password -D gitlabhq_production
 
 ### 4. gitlab 설치
 cd /home/git
-sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 6-7-stable gitlab
+git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 6-7-stable gitlab
 cd /home/git/gitlab
-sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
+git -H cp config/gitlab.yml.example config/gitlab.yml
 
 ## config/gitlab.yml 설정 편집
 vi config/gitlab.yml
@@ -81,8 +84,6 @@ sudo -u git -H cp config/database.yml.mysql config/database.yml
 ## DB 연결 정보 설정
 vi config/database.yml
 
-## 루비 번들 설치
-gem install bundle
 sudo -u git -H bundle install --deployment --without development test postgres aws
 
 ## 데이타베이스 초기화
