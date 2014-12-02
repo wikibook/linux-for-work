@@ -28,7 +28,7 @@ else if ( strlen($comment) < $minchars ) {
 }
 
 ## 커밋 메시지에 #123 처럼 redmine 레드마인 이슈 번호가 들어 있는지 확인한다.
-if (preg_match('/[^\d\n\r]#(?:[0-9]+)+.+/', $comment)) {
+if (preg_match('/#(?:[0-9]+)/', $comment)) {
 	# Successful match
 } else {
   # Match attempt failed

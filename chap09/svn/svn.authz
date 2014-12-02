@@ -1,0 +1,21 @@
+[repos:/]
+@admin-users = rw
+@readonly-users = r
+@hello-web-developers = r
+@lib-hello-developers = r
+
+[repos:/hello-webapp]
+@hello-web-developers = rw
+@readonly-users = r
+* =
+
+[repos:/lib-hello]
+@lib-hello-developers = rw
+@readonly-users = r
+* =
+
+[groups]
+admin-users = lesstif, admin
+hello-web-developers = @admin-users, dev1
+lib-hello-developers = @admin-users, twister
+readonly-users = readonly
