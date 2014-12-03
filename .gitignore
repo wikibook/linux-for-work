@@ -62,3 +62,5 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
+## test
+lib-hello
