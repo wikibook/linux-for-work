@@ -1,0 +1,4 @@
+### unicorn 으로 redmine 을 디플로이하기 위한 Gem 설정
+group :unicorn do gem "unicorn", '~> 4.6.3'
+    gem 'unicorn-worker-killer'
+end

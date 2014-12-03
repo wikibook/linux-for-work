@@ -63,6 +63,14 @@ mkdir -p tmp tmp/pdf public/plugin_assets
 cp config/configuration.yml.example config/configuration.yml
 vi config/configuration.yml
 
+### Webrick 으로 redmine 구동
+ruby script/rails server webrick -e production -p 3000
+
 ##### root 로 실행
+### httpd-vhost.conf 를 수정하여 apache httpd 와 redmine 연동
 ### httpd 에 3000번 포트 연결 허용
 semanage port -m -p tcp -t http_port_t 3000 
+
+### Browser 로 연결하여 동작 확인
+
+### 정상 동작한다면 unicorn 과 연동(선택)
