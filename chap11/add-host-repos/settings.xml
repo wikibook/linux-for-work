@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+   <profiles>
+      <profile>
+         <id>myprofile</id>
+         <pluginRepositories>
+            <pluginRepository>
+               <releases>
+                  <updatePolicy>never</updatePolicy>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+               <id>central</id>
+               <name>Central Repository</name>
+               <url>http://nexus.example.com/content/repositories/central/</url>
+            </pluginRepository>
+         </pluginRepositories>
+         <repositories>
+            <repository>
+               <id>public</id>
+               <name>maven central mirror Repository</name>
+               <url>http://nexus.example.com/content/groups/public/</url>
+               <releases>
+                  <enabled>true</enabled>
+               </releases>
+            </repository>
+         </repositories>
+      </profile>
+   </profiles>
+   <activeProfiles>
+      <activeProfile>myprofile</activeProfile>
+   </activeProfiles>
+   <servers>
+      <server>
+         <id>releases</id>
+         <username>deployment</username>
+         <password>deployment123</password>
+      </server>
+      <server>
+         <id>snapshots</id>
+         <username>deployment</username>
+         <password>deployment123</password>
+      </server>
+      <server>
+         <id>project</id>
+         <username>project</username>
+         <password>proj123</password>
+      </server>
+      <server>
+         <id>project-snapshots</id>
+         <username>project</username>
+         <password>proj123</password>
+      </server>
+   </servers>
+</settings>

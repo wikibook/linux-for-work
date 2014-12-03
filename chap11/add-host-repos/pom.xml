@@ -3,7 +3,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.example</groupId>
    <artifactId>lib-hello</artifactId>
-   <version>1.0</version>
+   <version>1.1</version>
    <packaging>jar</packaging>
    <name>lib-hello</name>
    <url>http://maven.apache.org</url>
@@ -44,48 +44,15 @@
          </releases>
       </pluginRepository>
    </pluginRepositories>
-
-   <!-- artifact deploy  url -->
+   <!-- 추가된 Host 저장소 -->
    <distributionManagement>
       <repository>
-         <id>releases</id>
-         <url>http://nexus.example.com/content/repositories/releases</url>
+         <id>project</id>
+         <url>https://nexus.example.com/content/repositories/shared/</url>
       </repository>
       <snapshotRepository>
-         <id>snapshots</id>
-         <url>http://nexus.example.com/content/repositories/snapshots</url>
+         <id>project-snapshots</id>
+         <url>https://nexus.example.com/content/repositories/shared-snapshots/</url>
       </snapshotRepository>
    </distributionManagement>
-
-   <build>
-   <!-- javadoc -->
-   <plugins>
-      <plugin>
-         <artifactId>maven-source-plugin</artifactId>
-         <version>2.3</version>
-         <executions>
-            <execution>
-               <id>attach-sources</id>
-               <phase>verify</phase>
-               <goals>
-                  <goal>jar</goal>
-               </goals>
-            </execution>
-         </executions>
-      </plugin>
-      <plugin>
-         <artifactId>maven-javadoc-plugin</artifactId>
-         <version>2.9.1</version>
-         <executions>
-            <execution>
-               <id>attach-javadocs</id>
-               <phase>verify</phase>
-               <goals>
-                  <goal>jar</goal>
-               </goals>
-            </execution>
-         </executions>
-      </plugin>
-   </plugins>
-   </build>
 </project>
