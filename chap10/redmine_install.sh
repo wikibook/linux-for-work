@@ -46,7 +46,6 @@ vi config/database.yml
 
 ## Package 와 ImageMagick 설치
 bundle install --without development test --path vendor/bundle
-bundle install --without development test rmagick
 
 ## HTTP의 쿠키 데이터를 암호화하기 위해 사용하는 임의의 키를 생성한다
 bundle exec rake generate_secret_token
@@ -60,10 +59,10 @@ RAILS_ENV=production bundle exec rake redmine:load_default_data
 ## 임시 디렉터리와 플러그인 디렉터리 생성
 mkdir -p tmp tmp/pdf public/plugin_assets
 
-## 
+## 환경 파일 편집
 cp config/configuration.yml.example config/configuration.yml
 vi config/configuration.yml
 
-## 환경 파일 편집
-config/configuration.yml
-
+##### root 로 실행
+### httpd 에 3000번 포트 연결 허용
+semanage port -m -p tcp -t http_port_t 3000 
