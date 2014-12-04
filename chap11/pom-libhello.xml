@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- lib-hello 폴더에 pom.xml 로 복사 -->
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.example</groupId>
+   <artifactId>lib-hello</artifactId>
+   <version>1.0</version>
+   <packaging>jar</packaging>
+   <name>lib-hello</name>
+   <url>http://maven.apache.org</url>
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+   <dependencies>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>3.8.1</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+   <repositories>
+      <repository>
+         <id>public</id>
+         <name>maven central mirror Repository</name>
+         <layout>default</layout>
+         <url>http://nexus.example.com/content/groups/public/</url>
+         <snapshots>
+            <enabled>false</enabled>
+         </snapshots>
+      </repository>
+   </repositories>
+   <pluginRepositories>
+      <pluginRepository>
+         <!-- id 는 central 이어야 함 -->
+         <id>central</id>
+         <name>Maven Plugin Repository</name>
+         <url>http://nexus.example.com/content/repositories/central/</url>
+         <layout>default</layout>
+         <snapshots>
+            <enabled>false</enabled>
+         </snapshots>
+         <releases>
+            <updatePolicy>never</updatePolicy>
+         </releases>
+      </pluginRepository>
+   </pluginRepositories>
+
+    <distributionManagement>
+      <repository>
+         <id>releases</id>
+         <url>http://nexus.example.com/content/repositories/releases</url>
+      </repository>
+      <snapshotRepository>
+         <id>snapshots</id>
+         <url>http://nexus.example.com/content/repositories/snapshots</url>
+      </snapshotRepository>
+   </distributionManagement>
+</project>

@@ -1,8 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- lib-hello 폴더에 pom.xml 로 복사 -->
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.example</groupId>
    <artifactId>lib-hello</artifactId>
-   <version>1.0</version>
+   <version>1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
    <name>lib-hello</name>
    <url>http://maven.apache.org</url>
@@ -13,7 +14,7 @@
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
-         <version>3.8.1</version>
+         <version>4.8.1</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
