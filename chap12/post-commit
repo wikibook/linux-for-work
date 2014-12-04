@@ -1,0 +1,29 @@
+#!/usr/bin/php
+
+<?php
+
+    $svnlook = 'svnlook';
+    $repos = $argv[1];
+    $rev = $argv[2];
+    $change = `$svnlook changed -r "$rev" "$repos"`;
+
+    $list = split("/", $change);
+    $tmp = split("[ \t]+", $list[0]);
+
+    # Project Name
+    $proj_name = $tmp[1];
+  
+    ## 젠킨스 URL
+    $url = "http://jenkins.example.com/job/$proj_name/build"; 
+    $tok = "mySecretToken";
+    $auth = " -u devel:myPasswd "; # 젠킨스 인증 정보
+    $param = " --data-urlencode \"token=$tok\" ";
+    if ($proj_name == "lib-hello") ## 원격 빌드할 프로젝트 이름
+    { 
+        $cmd = "curl -v $auth $url $param";
+        $output = shell_exec($cmd);
+        // 실행 결과 출력
+        error_log("$cmd RESULT\n\n" . $output);
+    }
+
+?>
