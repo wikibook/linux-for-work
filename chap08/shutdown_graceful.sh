@@ -22,7 +22,7 @@ killproc() {
         kill -${signal} ${PID};
         return 1;
     else
-         return 0;
+        return 0;
     fi
 }
 
@@ -40,7 +40,7 @@ USER=`whoami`
 
 cd ${TC_HOME}
 ./bin/shutdown.sh >& /dev/null
-sleep 1 # delay 1 sec for tomcat shutting down..
+sleep 3 # delay 3 sec for tomcat shutting down..
 
 ## 
 for i in 1 2;do
